@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% block content %}
+<h2>Edit Job Application</h2>
+<form method="POST">
+    <select name="priority">
+        <option value="3" {% if job[8] == 3 %}selected{% endif %}>High</option>
+        <option value="2" {% if job[8] == 2 %}selected{% endif %}>Medium</option>
+        <option value="1" {% if job[8] == 1 %}selected{% endif %}>Low</option>
+    </select>
+  <label>Company Name:</label>
+  <input type="text" name="company_name" value="{{ job[1] }}" required />
+
+  <label>Job Title:</label>
+  <input type="text" name="job_title" value="{{ job[2] }}" required />
+
+  <label>Job Status</label>
+  <select name="application_status" id="application_status">
+      <option value="Applied" {% if job[3] == "Applied" %}selected{% endif %}>Applied</option>
+      <option value="Interview Scheduled" {% if job[3] == "Interview Scheduled" %}selected{% endif %}>Interview Scheduled</option>
+      <option value="Rejected" {% if job[3] == "Rejected" %}selected{% endif %}>Rejected</option>
+      <option value="Offer Received" {% if job[3] == "Offer Received" %}selected{% endif %}>Offer Received</option>
+  </select>
+
+  <label>Applied Date:</label>
+  <input type="date" name="applied_date" value="{{ job[4] or '' }}" />
+
+  <label>Interview Date:</label>
+  <input type="datetime-local" name="interview_date" value="{{ job[5] or '' }}" />
+
+  <label>Reminder Date:</label>
+  <input type="datetime-local" name="reminder_date" value="{{ job[6] or '' }}" />
+
+  <label>Comments:</label>
+  <input type="text" name="comments_section" value="{{ job[7] or '' }}" />
+
+  <div id="feedbackFormData" style="display: none;">
+    <h2>Provide Feedback</h2>
+    <label>Status:</label>
+    <select name="status" id="feedback_status">
+        <option>Rejected</option>
+        <option>Offer Received</option>
+    </select><br>
+
+    <label>Feedback:</label>
+    <textarea name="feedback"></textarea><br>
+
+    <label>Programming Language in discussion:</label>
+    <select name="language">
+        <option>HTML</option>
+        <option>Rust</option>
+        <option>Python</option>
+        <option>Java</option>
+        <option>Node</option>
+        <option>React</option>
+        <option>Go</option>
+        <option>kotlin</option>
+        <option>SQL</option>
+        <option>Java Script</option>
+    </select>   
+  </div>
+
+  <input type="submit" value="Save Changes">
+  <a href="/feedback/{{ job[0] }}">Feedback</a>
+</form>
+{% endblock %}

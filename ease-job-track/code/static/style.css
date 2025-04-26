@@ -1,0 +1,773 @@
+/* Modern Style for Job Application Tracker */
+:root {
+  --primary: #17a2b8; /* Teal */
+  --primary-dark: #138496; /* Darker Teal */
+  --secondary: #0dcaf0; /* Cyan */
+  --success: #06d6a0; /* Keep success as is */
+  --warning: #ffd166; /* Keep warning as is */
+  --danger: #ef476f; /* Keep danger as is */
+  --light: #f8f9fa; /* Keep light as is */
+  --dark: #212529; /* Keep dark as is */
+  --gray: #6c757d; /* Keep gray as is */
+}
+
+/* General Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f5f7fa;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--light);
+  color: var(--gray);
+  font-size: 0.9rem;
+  border-top: 1px solid #eee;
+  margin-top: 2rem;
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 1.2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+header nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+table th,
+table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+table th {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+table tr:hover {
+  background-color: rgba(67, 97, 238, 0.05);
+}
+
+/* Status-specific colors */
+td:nth-child(3) {
+  font-weight: 500;
+}
+
+tr td:nth-child(3):contains("Applied") {
+  color: var(--gray);
+}
+
+tr td:nth-child(3):contains("Interview") {
+  color: var(--warning);
+}
+
+tr td:nth-child(3):contains("Rejected") {
+  color: var(--danger);
+}
+
+tr td:nth-child(3):contains("Offer") {
+  color: var(--success);
+}
+
+/* Form Styles */
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+form label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+form input,
+form select,
+form textarea,
+form button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+form button,
+form input[type="submit"] {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  margin-top: 1rem;
+}
+
+form button:hover,
+form input[type="submit"]:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Action Links */
+td a {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.5rem;
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+
+td a[href*="edit"] {
+  background-color: var(--primary);
+  color: white;
+}
+
+td a[href*="delete"] {
+  background-color: var(--danger);
+  color: white;
+}
+
+td a[href*="feedback"],
+td a[href*="notes"] {
+  background-color: var(--primary);
+  color: white;
+}
+
+td a:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.sort-list {
+  position: right;
+  top: 50%;
+  margin-left: 5px;
+  transform: translateY(-50%);
+}
+
+/* Search Form */
+.search-form {
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-buttons button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.form-buttons button[type="submit"] {
+  background-color: var(--primary);
+  color: white;
+}
+
+.form-buttons button[type="submit"]:hover {
+  background-color: var(--primary-dark);
+}
+
+.form-buttons button[type="button"] {
+  background-color: var(--gray);
+  color: white;
+}
+
+.form-buttons button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+/* Search Results Table Styling */
+.search-results {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.search-results th,
+.search-results td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-results th {
+  background-color: var(--primary);
+  font-weight: bold;
+}
+
+.search-results tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Popup & Visualization */
+.centered-text {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.centered-text h2,
+.centered-text h3 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.close-button {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--gray);
+  transition: var(--transition);
+}
+
+.close-button:hover {
+  color: var(--danger);
+}
+
+/* Centered Text Container */
+.centered-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Visualize Button */
+#visualizeButton {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+#visualizeButton:hover {
+  background-color: #3db8e0;
+  transform: translateY(-2px);
+}
+
+/* Chart Tabs */
+.tab {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1.5rem;
+}
+
+.tab button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--gray);
+  transition: var(--transition);
+  border-bottom: 2px solid transparent;
+}
+
+.tab button.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.tab button:hover:not(.active) {
+  background-color: #f8f9fa;
+}
+
+.chart-container {
+  display: none;
+  padding: 1rem;
+  min-height: 400px;
+}
+
+.chart-container.active {
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Header adjustments */
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  header h1 {
+    margin-bottom: 1rem;
+  }
+
+  header nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  header nav a {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Table adjustments */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table th,
+  table td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  /* Form adjustments */
+  form {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  form input,
+  form select,
+  form textarea,
+  form button {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  /* Popup adjustments */
+  .popup-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .tab button {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .chart-container {
+    min-height: 300px;
+  }
+
+  /* Centered text adjustments */
+  .centered-text {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #visualizeButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Search form adjustments */
+  .search-form {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .search-form input[type="text"],
+  .search-form input[type="date"] {
+    padding: 0.5rem;
+  }
+
+  .form-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light text */
+}
+
+/* Header */
+body.dark-mode header {
+  background: linear-gradient(135deg, #1f1f1f, #121212);
+  color: #ffffff; /* Light text */
+}
+
+/* Tables */
+body.dark-mode table {
+  background-color: #1f1f1f; /* Dark table background */
+  color: #ffffff; /* Light text */
+}
+
+body.dark-mode table th {
+  background-color: #333; /* Dark header background */
+  color: #ffffff; /* Light text */
+}
+
+body.dark-mode table tr:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
+/* Forms */
+body.dark-mode form {
+  background-color: #1f1f1f; /* Dark form background */
+  color: #ffffff; /* Light text */
+}
+
+body.dark-mode form label {
+  color: #ffffff; /* Light text for labels */
+}
+
+body.dark-mode form input,
+body.dark-mode form select,
+body.dark-mode form textarea {
+  background-color: #333; /* Dark input background */
+  color: #ffffff; /* Light text */
+  border-color: #555; /* Dark border */
+}
+
+body.dark-mode form input:focus,
+body.dark-mode form select:focus,
+body.dark-mode form textarea:focus {
+  border-color: var(--primary); /* Primary color for focus */
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2); /* Focus effect */
+}
+
+/* Buttons */
+body.dark-mode button {
+  background-color: #333; /* Dark button background */
+  color: #ffffff; /* Light text */
+}
+
+body.dark-mode button:hover {
+  background-color: #444; /* Dark hover effect */
+}
+
+/* Links */
+body.dark-mode a {
+  color: #4cc9f0; /* Light blue for links */
+}
+
+body.dark-mode a:hover {
+  color: #3db8e0; /* Light blue hover effect */
+}
+
+/* Popup */
+body.dark-mode .popup-content {
+  background-color: #1f1f1f; /* Dark popup background */
+  color: #ffffff; /* Light text */
+}
+
+body.dark-mode .close-button {
+  color: #ffffff; /* Light close button */
+}
+
+body.dark-mode .close-button:hover {
+  color: var(--danger); /* Danger color for hover */
+}
+
+/* Tabs */
+body.dark-mode .tab button {
+  color: #ffffff; /* Light text for tabs */
+}
+
+body.dark-mode .tab button.active {
+  color: var(--primary); /* Primary color for active tab */
+}
+
+body.dark-mode .tab button:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
+/* Additional Dark Mode Styles for Specific Elements */
+body.dark-mode .form-group label {
+  color: #ffffff; /* Light text for form labels */
+}
+
+body.dark-mode .form-buttons button {
+  background-color: #333; /* Dark button background */
+  color: #ffffff; /* Light text */
+}
+
+body.dark-mode .form-buttons button:hover {
+  background-color: #444; /* Dark hover effect */
+}
+
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Notifications Dropdown */
+.notifications-dropdown {
+  position: relative; /* Important for positioning the dropdown */
+}
+
+#notification-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#notification-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.notifications-list {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.notifications-list.show {
+  display: block;
+}
+
+.notification-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  color: var(--dark);
+  display: flex; /*Use flexbox to allign the dismiss button*/
+  justify-content: space-between; /*Push the dismiss button to the right*/
+  align-items: center;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dismiss-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: grey;
+}
+
+.centered-text h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--heading-blue);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.centered-text h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.centered-text h2:hover {
+  color: var(--primary-dark);
+  transform: scale(1.02);
+  transition: var(--transition);
+}
+
+#sortPriority {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+#sortPriority:hover {
+  background-color: var(--primary-dark);
+}
+
+#sortPriority .sort-list {
+  color: white;
+  font-size: 0.85rem;
+  display: contents;
+  align-items: center;
+}

@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block content %}
+<h2>Add New Job</h2>
+<form method="POST">
+
+  <label>Priority:</label>
+  <select name="priority">
+      <option value="3">High</option>
+      <option value="2">Medium</option>
+      <option value="1">Low</option>
+  </select>
+  <label>Company Name:</label>
+  <input type="text" name="company_name" required />
+  <label>Job Title:</label>
+  <input type="text" name="job_title" required />
+  <label>Application Status:</label>
+  <select name="application_status">
+    <option>Applied</option>
+    <option>Interview Scheduled</option>
+    <option>Rejected</option>
+    <option>Offer Received</option>
+  </select>
+  <label>Applied Date:</label>
+  <input type="date" name="applied_date" />
+  <label>Interview Date:</label>
+  <input type="datetime-local" name="interview_date" />
+  <label>Reminder Date:</label>
+  <input type="datetime-local" name="reminder_date" />
+  <label>Comments:</label>
+  <input type="text" name="comments_section" />
+  <button type="submit">Add Job</button>
+</form>
+<p>Note: If an interview date is added, an event will be created in Google Calendar.</p>
+
+{% endblock %}

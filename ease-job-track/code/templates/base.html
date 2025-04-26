@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Apply dark mode preference globally as soon as the page starts loading
+      (function() {
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        console.log('Base HTML immediate check: Dark mode preference:', isDarkMode);
+        if (isDarkMode) {
+          document.body.classList.add('dark-mode');
+          console.log('Base HTML: Dark mode class added to body');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1><i class="fas fa-briefcase"></i> Job Application Tracker</h1>
+      <nav>
+        <a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+        <a href="{{ url_for('add_job') }}"><i class="fas fa-plus-circle"></i> Add Job</a>
+        <a href="{{ url_for('search_jobs') }}"><i class="fas fa-search"></i> Search</a>
+        <button id="dark-mode-toggle">
+          <i class="fas fa-moon"></i> Dark Mode
+        </button>
+        <button id="notification-button">
+          <i class="fas fa-bell"></i> Notifications
+        </button>
+        <div id="notifications-list" class="notifications-list">
+          <!-- Notifications will be dynamically added here -->
+        </div>
+      </nav>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer>
+      <p>Job Application Tracker &copy; 2025</p>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

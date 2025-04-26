@@ -1,0 +1,98 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- passing data from Flask to JavaScript -->
+<script id="statusLabels" type="application/json">
+  {{ status_labels | tojson | safe }}
+</script>
+<script id="statusCounts" type="application/json">
+  {{ status_counts | tojson | safe }}
+</script>
+<script id="companyNames" type="application/json">
+  {{ company_names | tojson | safe }}
+</script>
+<script id="companyCounts" type="application/json">
+  {{ company_counts | tojson | safe }}
+</script>
+
+<!-- Pop-up -->
+<div id="visualizePopup" class="popup">
+  <div class="popup-content">
+    <span class="close-button" id="closeVisualize">&times;</span>
+    <div class="centered-text">
+      <b><h3>Visualize Job Applications</h3></b>
+    </div>
+
+    <!-- Tabs for Pie Chart and Bar Chart -->
+    <div class="tab">
+      <button id="pieTabButton" class="active">Pie Chart</button>
+      <button id="barTabButton">Bar Chart</button>
+    </div>
+
+    <!-- Pie Chart Container -->
+    <div id="pieChartContainer" class="chart-container active">
+      <canvas id="statusChart" width="400" height="400"></canvas>
+    </div>
+
+    <!-- Bar Chart Container -->
+    <div id="barChartContainer" class="chart-container">
+      <canvas id="companyChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Job Applications Table -->
+<div class="centered-text">
+  <h2>The Great Application Quest</h2>
+  <button id="visualizeButton">
+    <i class="fas fa-chart-pie"></i> Visualize
+  </button>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>
+        <button id="sortPriority" class="sort-header">
+          Priority <span class="sort-list"><i class="fas fa-sort"></i></span>
+        </button>
+      </th>
+      <th>Company</th>
+      <th>Job Title</th>
+      <th>Job Status</th>
+      <th>Applied Date</th>
+      <th>Interview Date</th>
+      <th>Reminder</th>
+      <th>Comments</th>
+      <th>Actions</th>
+      <th>Feedback</th>
+    </tr>
+  </thead>
+  <tbody id="jobTable">
+    {% for job in jobs %}
+    <tr>
+      <td>
+        {% if job[8] == 3 %} ★★★ {% elif job[8] == 2 %} ★★ {% elif job[8] == 1
+        %} ★ {% else %} Error {% endif %}
+      </td>
+      <td>{{ job[1] }}</td>
+      <td>{{ job[2] }}</td>
+      <td>{{ job[3] }}</td>
+      <td>{{ job[4] }}</td>
+      <td>{{ job[5] or 'N/A' }}</td>
+      <td>{{ job[6] or 'N/A' }}</td>
+      <td>{{ job[7] or 'N/A' }}</td>
+      <td>
+        <a href="{{ url_for('edit_job', id=job[0]) }}">Edit</a>
+        <a href="{{ url_for('delete_job', id=job[0]) }}">Delete</a>
+      </td>
+      <td>
+        {% if job[3] == "Rejected" or job[3] == "Offer Received" %}
+        <a href="{{ url_for('feedback', job_id=job[0]) }}">Notes</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
